@@ -15,4 +15,14 @@ public class MenuController : MonoBehaviour
 
         _tabsList.FirstOrDefault(MenuTab => MenuTab.name == tabName).gameObject.SetActive(true);
     }
+
+    public void OpenFirstTab()
+    {
+        OpenNewTab(_tabsList.First().name);
+    }
+
+    public void AddNewTab(MenuTab tab)
+    {
+        _tabsList.Add(tab);
+    }
 }
