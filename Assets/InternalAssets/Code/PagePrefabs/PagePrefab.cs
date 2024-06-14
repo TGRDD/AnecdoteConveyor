@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class PagePrefab : MonoBehaviour
+public class PagePrefab : Page
 {
     [SerializeField] private TextMeshProUGUI _textFill;
     [SerializeField] private Image _backGroundImage;

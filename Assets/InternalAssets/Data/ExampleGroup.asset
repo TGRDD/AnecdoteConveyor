@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: ExampleGroup
   m_EditorClassIdentifier: 
   _menuPrefabPath: UIPrefabs/MainMenu
-  _fullPagePrefabPath: 
+  _fullPagePrefabPath: UIPrefabs/Page=Default
   _pageWithoutTextPrefabPath: 
   _pageWithoutImagePrefabPath: 
   _group:
-  - GroupName: 
+  - GroupName: "\u041F\u0440\u043E \u0440\u0443\u0441\u0441\u043A\u0438\u0445"
     anectodePageDatas:
     - SaveID: 
       AnecdoteText: 
@@ -25,7 +25,15 @@ MonoBehaviour:
     - SaveID: 
       AnecdoteText: 
       AnecdoteSpriteName: 
-  - GroupName: 
+  - GroupName: "\u041F\u0440\u043E \u0430\u043C\u0435\u0440\u0438\u043A\u0430\u043D\u0446\u0435\u0432"
+    anectodePageDatas:
+    - SaveID: 
+      AnecdoteText: 
+      AnecdoteSpriteName: 
+    - SaveID: 
+      AnecdoteText: 
+      AnecdoteSpriteName: 
+  - GroupName: "\u041F\u0440\u043E \u043A\u0438\u0442\u0430\u0439\u0446\u0435\u0432"
     anectodePageDatas:
     - SaveID: 
       AnecdoteText: 
