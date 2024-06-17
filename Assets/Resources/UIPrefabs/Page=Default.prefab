@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f52045d3320743a429835d323bd35d67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _tab: {fileID: 5080330514523022946}
   _textFill: {fileID: 0}
   _backGroundImage: {fileID: 0}
   _anecdoteImage: {fileID: 0}

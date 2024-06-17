@@ -7,7 +7,7 @@ public class LevelBuilderSystem : MonoBehaviour
 {
     [SerializeField] private GameplayData gameplayData;
     [SerializeField] private Transform _canvasRoot;
-    
+    [SerializeField] private GameObject _emptyObject;
 
     private void Start()
     {
@@ -21,8 +21,8 @@ public class LevelBuilderSystem : MonoBehaviour
         MenuController mainController = CreateMenuController("MainController", menuControllersRoot);
 
 
-        MenuPagePrefab menuPage = Resources.Load<MenuPagePrefab>(gameplayData._menuPrefabPath);
-        Instantiate(menuPage, _canvasRoot);
+        MenuPagePrefab menuPageLoad = Resources.Load<MenuPagePrefab>(gameplayData._menuPrefabPath);
+        MenuPagePrefab menuPage = Instantiate(menuPageLoad, _canvasRoot);
         mainController.AddNewTab(menuPage.SelfTab);
 
         //TODO: SWAP TO FACTORY
@@ -30,32 +30,36 @@ public class LevelBuilderSystem : MonoBehaviour
 
         foreach (var group in gameplayData._group)
         {
-            Transform GroupRoot = CreateEmpty(group.GroupName, gameRoot).transform;
+            Transform GroupRoot = CreateEmpty(group.GroupName, _canvasRoot).transform;
             MenuController groupController = GroupRoot.AddComponent<MenuController>();
 
             
             foreach (var page in group.anectodePageDatas)
             {
 
-                PagePrefab instance = Instantiate(DefaultPage, GroupRoot);
+                PagePrefab instance = Instantiate(DefaultPage, _canvasRoot);
                 instance.gameObject.SetActive(false);
 
                 groupController.AddNewTab(instance.SelfTab);
             }
 
             menuPage.AddButton(groupController);
+            CreateEmpty(" ", _canvasRoot);
         }
     }
 
     public GameObject CreateEmpty(string name)
     {
-        return new GameObject(name);
+        GameObject obj = Instantiate(_emptyObject);
+        obj.name = name;
+        return obj;
     }
 
     public GameObject CreateEmpty(string name, Transform root)
     {
-        GameObject obj = new GameObject(name);
-        obj.transform.parent = root;
+        GameObject obj = Instantiate(_emptyObject);
+        obj.name = name;
+        obj.transform.SetParent(root);
         return obj;
     }
 
