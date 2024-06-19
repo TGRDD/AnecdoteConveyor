@@ -10,4 +10,20 @@ public class GameplayData : ScriptableObject
 
     [Header("Groups")]
     public AnecdoteGroup[] _group;
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        foreach (var group in _group)
+        {
+            foreach( var item in group.anectodePageDatas)
+            {
+                if (item.AnecdoteSpritePath.ToCharArray().Length > 0 && item.AnecdoteSpritePath.ToCharArray().Length < 2)
+                {
+                    item.AnecdoteSpritePath = "Sprites/Name";
+                }
+            }
+        }
+    }
+#endif
 }

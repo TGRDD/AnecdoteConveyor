@@ -16,6 +16,8 @@ public class LevelBuilderSystem : MonoBehaviour
 
     public void BuildProcces()
     {
+        PagePrefabFactory prefabFactory = new PagePrefabFactory(gameplayData);
+
         Transform gameRoot = CreateEmpty("GameSystems", _canvasRoot).transform;
         Transform menuControllersRoot = CreateEmpty("ControllersRoot", gameRoot).transform;
         MenuController mainController = CreateMenuController("MainController", menuControllersRoot);
@@ -25,8 +27,6 @@ public class LevelBuilderSystem : MonoBehaviour
         MenuPagePrefab menuPage = Instantiate(menuPageLoad, _canvasRoot);
         mainController.AddNewTab(menuPage.SelfTab);
 
-        //TODO: SWAP TO FACTORY
-        PagePrefab DefaultPage = Resources.Load<PagePrefab>(gameplayData._fullPagePrefabPath);
 
         foreach (var group in gameplayData._group)
         {
@@ -34,13 +34,14 @@ public class LevelBuilderSystem : MonoBehaviour
             MenuController groupController = GroupRoot.AddComponent<MenuController>();
 
             
-            foreach (var page in group.anectodePageDatas)
+            foreach (var pageData in group.anectodePageDatas)
             {
 
-                PagePrefab instance = Instantiate(DefaultPage, _canvasRoot);
+                PagePrefab newPagePrefab = prefabFactory.CreatePage(pageData, out GameObject instance);
+                Instantiate(newPagePrefab.transform.parent, _canvasRoot);
                 instance.gameObject.SetActive(false);
 
-                groupController.AddNewTab(instance.SelfTab);
+                groupController.AddNewTab(newPagePrefab.SelfTab);
             }
 
             menuPage.AddButton(groupController);

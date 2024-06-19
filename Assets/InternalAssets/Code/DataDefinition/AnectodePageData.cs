@@ -13,5 +13,5 @@ public class AnectodePageData
     public string AnecdoteText;
 
     [Tooltip("Изображение на странице анекдота")]
-    public string AnecdoteSpriteName;
+    public string AnecdoteSpritePath;
 }
